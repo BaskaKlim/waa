@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GosslingatorTest {
@@ -31,7 +32,7 @@ public class GosslingatorTest {
 
     @Test
 
-    public void itShouldAddOneRyan2_inySposobHladaniaElementov() {
+    public void itShouldAddTwoRyan_inySposobHladaniaElementov() {
         System.setProperty("webdriver.chrome.driver", "chromedriver");
 
         // 0. spustit prehliadac
@@ -39,11 +40,16 @@ public class GosslingatorTest {
         // 1. otvorit stranku
         driver.get("http://localhost:8888/gosslingator.php");
         // 2. n￿ájdi, potom kliknut na tlacidlo Ryon!
-        driver.findElement(By.id("addRyan")).click();
+        WebElement addRyanButton = driver.findElement(By.id("addRyan"));
+        addRyanButton.click();
+        addRyanButton.click();
         // 3. najdi, citaj text, overit pocitanie Ryanov
-        Assert.assertEquals("1", driver.findElement(By.cssSelector("div.ryan-counter h2")).getText());
+        String actualNumberOfRyans = driver.findElement(By.id("ryan-Counter")).getText();
+        String actualRyanDescription = driver.findElement(By.cssSelector("div.ryan-counter h3")).getText();
+
+        Assert.assertEquals("2", actualNumberOfRyans);
         System.out.println("number of ryans: " + driver.findElement(By.cssSelector("div.ryan-counter h2")).getText());
-        Assert.assertEquals("ryan", driver.findElement(By.cssSelector("div.ryan-counter h3")).getText());
+        Assert.assertEquals("ryans", actualRyanDescription);
         //4. zatvorit prehliadac
         driver.close();
         //.5. ukoncit session
@@ -71,9 +77,6 @@ public class GosslingatorTest {
         driver.quit();
     }
 
-
-
-
     public void itShouldAddOne50Ryans() {
         System.setProperty("webdriver.chrome.driver", "chromedriver");
 
@@ -82,56 +85,58 @@ public class GosslingatorTest {
         // 1. otvorit stranku
         driver.get("http://localhost:8888/gosslingator.php");
         // 2. n￿ájdi, potom kliknut na tlacidlo Ryon! 50krat - toto raz bude forcyklus
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
-        driver.findElement(By.id("addRyan")).click();
+        WebElement addRyanButton =  driver.findElement(By.id("addRyan"));
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+        addRyanButton.click();
+
 
         // 3. najdi, citaj text, overit pocitanie Ryanov
         Assert.assertEquals("NUMBER OF\n" +
