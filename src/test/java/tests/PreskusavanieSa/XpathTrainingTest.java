@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+//uloha2
+
 public class XpathTrainingTest {
     // zadefinujem si webdriver ktory je driver
     WebDriver driver;
