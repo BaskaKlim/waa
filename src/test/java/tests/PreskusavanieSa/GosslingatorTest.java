@@ -121,6 +121,10 @@ public class GosslingatorTest {
             if (i + 1 >= 2) {
                 Assert.assertEquals("ryans", actualDescription);
             }
+            //overim pocet obrazkov ryana
+            int numberOfRyanImages = driver.findElements(By.cssSelector("img")).size();
+            Assert.assertEquals(i + 1, numberOfRyanImages);
+
 // vypis index teda hodnotu premennej i - teda pocet opakovani a pocet ryanov
             System.out.println("index i = " + i);
             System.out.println("pocet ryanov = " + actualNumberOfRyans);
@@ -153,6 +157,18 @@ public class GosslingatorTest {
             actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();
             clicks++;
         }
+
+        //  #2priklad: otestujte v cykle pocet zobrazenych obrazkov ryana.
+
+
+    }
+
+    @Test
+    public void itShouldDisplayNoRyanOnPageOpen() {
+        Assert.assertEquals(
+                0,
+                driver.findElements(By.cssSelector("img")).size()
+        );
     }
 
 }
