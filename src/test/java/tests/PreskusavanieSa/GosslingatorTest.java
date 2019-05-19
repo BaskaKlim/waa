@@ -98,59 +98,35 @@ public class GosslingatorTest {
 
         //toto raz bude for cyklus  driver.findElement(By.id("addRyan")).click(); 50x pod sebou napisane
         WebElement addRyanButton = driver.findElement(By.id("addRyan"));
-        // klikni
-        addRyanButton.click();
-        // ALT+J oznacenie kazdeho dalsieho vyskytuC
-        // mac: ctrl + g
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
-        addRyanButton.click();
+        // definovany for cyklus pre integer i , ktore je mensie ako 50, a zvacuje sa po jednom integer i zacina ako 0
+        for (int i = 0; i < 50; i++) {
+            // klikni
+            addRyanButton.click();
+            // definovuj premennu aktualny pocet rajenov (mas ju hore uplne) zavolaj a vloz do nej text / hodnotu
+            String actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();
+
+            //porovnam skutocnu hodnotu zo stranky s hodnotou indexu +1
+            //index si musim premenit na String aby som ich mohol porovnat
+
+            Assert.assertEquals(String.valueOf(i + 1), actualNumberOfRyans);
+
+            //overit sklonovanie pomocou podmienky
+            // definuj si premmenu a vloz do nej text
+            String actualDescription = driver.findElement(By.cssSelector("div.ryan-counter h3")).getText();
+            // podmienka if opakovanie rovna sa 1 porovnaj hlasky ryanov - ryan a premenna
+            if (i + 1 == 1) {
+                Assert.assertEquals("ryan", actualDescription);
+            }
+            // podmienka if opakovanie je viac ako 2, ocakavane bude ryans
+            if (i + 1 >= 2) {
+                Assert.assertEquals("ryans", actualDescription);
+            }
+// vypis index teda hodnotu premennej i - teda pocet opakovani a pocet ryanov
+            System.out.println("index i = " + i);
+            System.out.println("pocet ryanov = " + actualNumberOfRyans);
+
+        }
+
 
         Assert.assertEquals(
                 "NUMBER OF\n" +
@@ -161,5 +137,23 @@ public class GosslingatorTest {
         );
 
     }
+
+    @Test
+    public void itShouldDisplayWarningMessageUsingWhileCycle() {
+        // zadefinovanie si premennej buttonu podla id
+        WebElement addRyanButton = driver.findElement(By.id("addRyan"));
+        // zadefinovanie si premennej hodnoty ryanov
+        String actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();
+        //while cyklus sa vykona vzdy ak je podmienka "true"
+        // cliklimit 30
+        int clicksLimit = 30;
+        int clicks = 0;
+        while (!actualNumberOfRyans.equals("50") && clicks < clicksLimit) {
+            addRyanButton.click();
+            actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();
+            clicks++;
+        }
+    }
+
 }
 
