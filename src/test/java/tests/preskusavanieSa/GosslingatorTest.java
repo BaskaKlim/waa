@@ -180,7 +180,7 @@ public class GosslingatorTest extends TestBase {
             }
 
             //overim pocet obrazkov ryana
-            int numberOfRyanImages = driver.findElements(By.cssSelector("img")).size();
+            int numberOfRyanImages = getNumberOfRyanImages();
             Assert.assertEquals(i + 1, numberOfRyanImages);
 
             System.out.println("index i = " + i);
@@ -245,7 +245,7 @@ public class GosslingatorTest extends TestBase {
     public void itShouldDisplayNoRyanOnPageOpenNEW() {
         Assert.assertEquals(
                 0,
-                driver.findElements(By.cssSelector("img")).size()
+                getNumberOfRyanImages()
         );
     }
     // pridavam si metodu
