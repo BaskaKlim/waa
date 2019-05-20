@@ -65,4 +65,35 @@ public class FellowshipTest {
         Assert.assertTrue(fellowNames.contains("Aragorn"));
         Assert.assertTrue(fellowNames.contains("Frodo"));
     }
+
+
+    @Test
+    public void itShouldDisplayMessageComplete() { // domaca uloha vyklikanie spolocnikov z ringu a overenie hlasky `Complete`
+        List<String> fellowsToSelect = new ArrayList<String>();
+        fellowsToSelect.add("Gandalf");
+        fellowsToSelect.add("Aragorn");
+        fellowsToSelect.add("Legolas");
+        fellowsToSelect.add("Frodo");
+
+        for (String fellowToSelect : fellowsToSelect) {
+            driver.findElement(By.xpath("//h1[contains(text(),'" + fellowToSelect + "')]")).click();
+        }
+
+        Assert.assertEquals("Complete", driver.findElement(By.cssSelector("div.points-left h3")).getText());
+    }
+
+    // domaca uloha overenie ze pocet bodov je vyplneny pre kazdeho
+    @Test
+    public void itShouldDisplayPointsForEachFellow() {
+        //najdem si zoznam vsetkych spolocnikov z ringu a ulozim ich do listu webelementov
+        List<WebElement> displayedFellows = driver.findElements(By.cssSelector("ul.list-of-fellows li"));
+        for (WebElement displayedFellow : displayedFellows) {
+
+            // /pre kazdeho najdem element v ktorom je ulozeny pocet bodov a zistim jeho text
+            String actualPoints = displayedFellow.findElement(By.cssSelector("div.fellow-points h2")).getText();
+
+            //overim ze hodnota actual points nie je prazdna
+            Assert.assertFalse(actualPoints.isEmpty());
+        }
+    }
 }
