@@ -1,6 +1,8 @@
-package tests.PreskusavanieSa;
+package tests.preskusavanieSa;
 
 import base.TestBase;
+import io.codearte.jfairy.Fairy;
+import io.codearte.jfairy.producer.person.Person;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;

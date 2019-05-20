@@ -1,4 +1,4 @@
-package tests.PreskusavanieSa;
+package tests.preskusavanieSa;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -11,8 +11,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class FellowshipTest {
 

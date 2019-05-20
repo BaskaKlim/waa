@@ -1,4 +1,4 @@
-package tests.PreskusavanieSa;
+package tests.preskusavanieSa;
 
 import org.junit.After;
 import org.junit.Assert;
