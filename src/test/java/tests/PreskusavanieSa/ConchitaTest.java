@@ -1,5 +1,6 @@
 package tests.PreskusavanieSa;
 
+import base.TestBase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,23 +9,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class ConchitaTest {
+public class ConchitaTest extends TestBase {
 
     WebDriver driver;
 
     @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
-        // 0. spustit prehliadac
-        driver = new ChromeDriver();
-        // 1. otvorit stranku
-        driver.get("http://localhost:8888/zenaalebomuz.php");
-    }
+    public void openUp () {
 
-    @After
-    public void tearDown() {
-        driver.close();
-        driver.quit();
+        driver.get(BASE_URL + "/zenaalebomuz.php");
     }
 
     @Test     //- otestujte po otvoreni stranky ze ani jedna moznost nie je vybrata
