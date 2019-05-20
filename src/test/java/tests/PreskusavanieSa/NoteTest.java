@@ -12,8 +12,6 @@ import static junit.framework.TestCase.assertTrue;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.name;
 
-public class NoteTest {
-
     public class NoteTest extends TestBase {
 
         @Before
