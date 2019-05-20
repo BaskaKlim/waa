@@ -16,7 +16,7 @@ public class RandomTableTest {
     WebDriver driver;
 
     @Before
-    public void setUp() {
+    public void openPage() {
         System.setProperty("webdriver.chrome.driver", "chromedriver");
         //0.spustit prehliadac
         driver = new ChromeDriver();
@@ -25,7 +25,7 @@ public class RandomTableTest {
     }
 
     @After
-    public void tearDown() {
+    public void closePage() {
         driver.close();
         driver.quit();
     }
