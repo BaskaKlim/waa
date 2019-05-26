@@ -20,7 +20,12 @@ public class NoteTest extends TestBase {
 
     @Test
     public void itShouldAddNote() throws InterruptedException {
-        String title = "Nazov";
+
+        //vytvorim si casovu peciatku pre unikatnost title
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String title = "Title " + timestamp.getTime();
+
+
         String author = "Autor";
         String message = "super super super odkaz";
 
@@ -43,7 +48,7 @@ public class NoteTest extends TestBase {
         );
         listItem.click();
         //overim detail zaznamu
-        Thread.sleep(1000);
+        Thread.sleep(5000);
         WebElement detail = driver.findElement(By.cssSelector("div.content"));
         Assert.assertEquals(title, detail.findElement(By.cssSelector("h4.title")).getText());
         Assert.assertEquals(author, detail.findElement(By.cssSelector("h4.recipent")).getText());
