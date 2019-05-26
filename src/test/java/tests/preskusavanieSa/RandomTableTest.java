@@ -35,8 +35,7 @@ public class RandomTableTest {
 
         // najdem a vypisem poseldny riadok
 
-        List<WebElement> tableRows = driver.findElements(By.cssSelector("table tbody tr"));
-        for (WebElement tableRow : tableRows) {
+        for (WebElement tableRow : getRows()) {
 
             Assert.assertFalse(tableRow.getText().isEmpty());
         }
@@ -44,7 +43,7 @@ public class RandomTableTest {
 
     @Test
     public void itShouldContainNameForEachRow() {
-        List<WebElement> tableRows = driver.findElements(By.cssSelector("table tbody tr"));
+        List<WebElement> tableRows = getRows();
         for (WebElement tableRow : tableRows) {
             tableRow.findElement(By.cssSelector("td:nth-child(2)"));
             WebElement rowName = tableRow.findElement(By.xpath("./td[2]"));
@@ -52,7 +51,9 @@ public class RandomTableTest {
 
         }
     }
-
+    private List<WebElement> getRows() {
+        return driver.findElements(By.cssSelector("table tbody tr"));
+    }
 }
 
 
