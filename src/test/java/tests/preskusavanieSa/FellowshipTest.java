@@ -1,53 +1,36 @@
-package tests.preskusavanieSa;
 
-import org.junit.After;
+package tests;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class FellowshipTest {
-
-    //pridany test pre overenie mien jednotlivych fellows z ringu
-
-    WebDriver driver;
-
+import base.TestBase;
+public class FellowshipTest extends TestBase {
     @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
-        //0.spustit prehliadac
-        driver = new ChromeDriver();
+    public void openPage() {
         //1.otvorit stranku
-        driver.get("http://localhost:8888/fellowship.php");
-    }
-
-    @After
-    public void tearDown() {
-        driver.close();
-        driver.quit();
+        driver.get(BASE_URL + "/fellowship.php");
     }
 
     @Test
-    public void
-    itShouldContainNameForEachFellow() {
+    public void itShouldContainNameForEachFellow() {
         // definujem si list elementov, ktory najdem podla css seleczora
-        List<WebElement> fellowElements = driver.findElements(By.cssSelector("ul.list-of-fellows li"));
+        List<WebElement> fellowElements = getFellowElements();
+
         // podmienka: pre kazdy element z tohto zoznamu
         for (WebElement fellowElement : fellowElements) {
             Assert.assertFalse(fellowElement.findElement(By.cssSelector("h1")).getText().isEmpty());
         }
     }
 
+
     @Test
     public void itShouldContainSpecifiedFellows() {
         //najdem si zoznam elementov (kachliciek)
-        List<WebElement> fellowElements = driver.findElements(By.cssSelector("ul.list-of-fellows li"));
+        List<WebElement> fellowElements = getFellowElements();
         //predpripravim si zoznam stringov do ktoreho si ulozim jednotlive mena
         List<String> fellowNames = new ArrayList<String>();
 
@@ -74,24 +57,33 @@ public class FellowshipTest {
         fellowsToSelect.add("Frodo");
 
         for (String fellowToSelect : fellowsToSelect) {
-            driver.findElement(By.xpath("//h1[contains(text(),'" + fellowToSelect + "')]")).click();
-        }
+            selectFellow(fellowToSelect);
 
-        Assert.assertEquals("Complete", driver.findElement(By.cssSelector("div.points-left h3")).getText());
+            Assert.assertEquals("Complete", driver.findElement(By.cssSelector("div.points-left h3")).getText());
+        }
     }
 
-    // //domaca uloha overenie ze pocet bodov je vyplneny pre kazdeho
-    @Test
-    public void itShouldDisplayPointsForEachFellow() {
-        //najdem si zoznam vsetkych spolocnikov z ringu a ulozim ich do listu webelementov
-        List<WebElement> displayedFellows = driver.findElements(By.cssSelector("ul.list-of-fellows li"));
-        for (WebElement displayedFellow : displayedFellows) {
+        // //domaca uloha overenie ze pocet bodov je vyplneny pre kazdeho
+        @Test
+        public void itShouldDisplayPointsForEachFellow() {
+            //najdem si zoznam vsetkych spolocnikov z ringu a ulozim ich do listu webelementov
+            List<WebElement> displayedFellows = getFellowElements();
+            for (WebElement displayedFellow : displayedFellows) {
 
-            // /pre kazdeho najdem element v ktorom je ulozeny pocet bodov a zistim jeho text
-            String actualPoints = displayedFellow.findElement(By.cssSelector("div.fellow-points h2")).getText();
+                // /pre kazdeho najdem element v ktorom je ulozeny pocet bodov a zistim jeho text
+                String actualPoints = displayedFellow.findElement(By.cssSelector("div.fellow-points h2")).getText();
 
-            //overim ze hodnota actual points nie je prazdna
-            Assert.assertFalse(actualPoints.isEmpty());
+                //overim ze hodnota actual points nie je prazdna
+                Assert.assertFalse(actualPoints.isEmpty());
+            }
         }
+
+
+    private void selectFellow(String fellowName) {
+        driver.findElement(By.xpath("//h1[contains(text(),'" + fellowName + "')]")).click();
+    }
+
+    private List<WebElement> getFellowElements() {
+        return driver.findElements(By.cssSelector("ul.list-of-fellows li"));
     }
 }
