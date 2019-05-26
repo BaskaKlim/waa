@@ -7,12 +7,15 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import pages.PokemonPage;
 
 public class PokemonTest extends TestBase {
+    private PokemonPage pokemonPage;
 
     @Before
     public void openPage() {
         driver.get(BASE_URL + "/vybersi.php");
+        pokemonPage = new PokemonPage(driver);
     }
 
 
@@ -26,31 +29,14 @@ public class PokemonTest extends TestBase {
 
         for (String pokemon : selectedPokemons) {
             //vyberiem pokemona  cez metodu co si zavolam
-            selectPokemon(pokemon);
+            pokemonPage.selectPokemon(pokemon);
             //overim hlasku
-            // zadefinuj si premennu aktualna hlaska, najdi ju a vloz do nej hodnotu
-            String actualMessage = getActualMessage();
-            // zadefinuj si ocakavanu hlasku
-            String expectedMessage = "I choose you " + pokemon + " !";
-            String expectedMessageByFormat = getExpectedlMessage(pokemon);
             //porovnaj
-            Assert.assertEquals(expectedMessageByFormat, actualMessage);
+            Assert.assertEquals(getExpectedMessage(pokemon), pokemonPage.getActualMessage());
         }
     }
 
-    private void selectPokemon(String pokemonToSelect) {
-        // najprv najst tento element
-        WebElement pokemonSelect = driver.findElement(By.cssSelector("select"));
-        // vyber  element podla pokemona
-        new Select(pokemonSelect).selectByVisibleText(pokemonToSelect);
-    }
-
-    private String getActualMessage() {
-        return driver.findElement(By.cssSelector("div.pokemon h3")).getText();
-    }
-
-    private String getExpectedlMessage(String pokemonName) {
-        // metoda mi vrati ocakavanu hlasku "I choose you {{pokemon}}!
+    private String getExpectedMessage(String pokemonName) {
         return String.format("I choose you %s !", pokemonName);
     }
 }
