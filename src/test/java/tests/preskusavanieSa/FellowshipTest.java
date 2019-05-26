@@ -66,7 +66,7 @@ public class FellowshipTest {
 
 
     @Test
-    public void itShouldDisplayMessageComplete() { // domaca uloha vyklikanie spolocnikov z ringu a overenie hlasky `Complete`
+    public void itShouldDisplayMessageComplete() { // // domaca uloha vyklikanie spolocnikov z ringu a overenie hlasky `Complete`
         List<String> fellowsToSelect = new ArrayList<String>();
         fellowsToSelect.add("Gandalf");
         fellowsToSelect.add("Aragorn");
@@ -80,7 +80,7 @@ public class FellowshipTest {
         Assert.assertEquals("Complete", driver.findElement(By.cssSelector("div.points-left h3")).getText());
     }
 
-    // domaca uloha overenie ze pocet bodov je vyplneny pre kazdeho
+    // //domaca uloha overenie ze pocet bodov je vyplneny pre kazdeho
     @Test
     public void itShouldDisplayPointsForEachFellow() {
         //najdem si zoznam vsetkych spolocnikov z ringu a ulozim ich do listu webelementov
