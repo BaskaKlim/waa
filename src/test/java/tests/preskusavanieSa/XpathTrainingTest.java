@@ -34,15 +34,11 @@ public class XpathTrainingTest {
         // zadefinujem si premennu text z buttonu
         String buttonText = "One more button";
         // najdem element - text buttonu - cez lokator skrz xpath  a kliknem
-        driver.findElement(By.xpath("//button[contains(text(),'" + buttonText + "')]")).click();
-        // zadefinujem si premennu text spravy/hlasky
-        // najdem text hlasky pomocou css lokatora a vezmem do mapate text z neho
-
-        String actualMessage = driver.findElement(By.cssSelector("div.output h2 span")).getText();
+        clickOnButton(buttonText);
         // porovnam hlasku s tym, co cakam ze napise, bacha musim dat ocakavanu hlasku (moju premennu 2) do lowecase
         Assert.assertEquals(
                 "you clicked " + buttonText.toLowerCase(),
-                actualMessage
+                getActualMessage()
         );
     }
 
@@ -58,13 +54,20 @@ public class XpathTrainingTest {
         driver.findElement(By.id("hitme")).click();
 
         // zadefinujem si premennu zobrazenu hlasku - //precitam hodnotu zo stranky a ulozim ju do premennej
-        String actualMessage = driver.findElement(By.cssSelector("div.output h2 span")).getText();
+
 
         // overim zobrazenu hlasku s vkladajucou hlaskou
         Assert.assertEquals(
                 "you entered " + message,
-                actualMessage
+                getActualMessage()
         );
+    }
+    private String getActualMessage() {
+        return driver.findElement(By.cssSelector("div.output h2 span")).getText();
+    }
+
+    private void clickOnButton(String buttonText) {
+        driver.findElement(By.xpath("//button[contains(text(),'" + buttonText + "')]")).click();
     }
 
 }
