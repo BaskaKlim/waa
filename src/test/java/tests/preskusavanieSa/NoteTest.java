@@ -1,68 +1,49 @@
-package tests.preskusavanieSa;
+package pages.preskusavamSa;
+
+import base.TestBase;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.person.Person;
-
-import java.sql.Timestamp;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.NotePage;
 
-import base.TestBase;
+import java.sql.Timestamp;
+
 
 public class NoteTest extends TestBase {
+    private NotePage notePage;
 
     @Before
     public void openPage() {
         driver.get(BASE_URL + "/odkazovac.php");
+        notePage = new NotePage(driver);
     }
 
     @Test
     public void itShouldAddNote() throws InterruptedException {
-
         //vytvorim si casovu peciatku pre unikatnost title
-
         Fairy fairy = Fairy.create();
         Person fakePerson = fairy.person();
         //ulozim si hodnoty do premennych
-        //ulozim si hodnoty do premennych
-
         String title = generateUniqueTitle();
         String author = fakePerson.getFirstName() + " " + fakePerson.getLastName();
         String message = "toto je velmi dlhy a zmysluplny odkaz";
 
-        Integer numberOfNotes = Integer.valueOf(driver.findElement(By.cssSelector("h3.sin-header span")).getText());
-        driver.findElement(By.name("title")).sendKeys(title);
-        driver.findElement(By.name("author")).sendKeys(author);
-        driver.findElement(By.name("message")).sendKeys(message);
-        driver.findElement(By.cssSelector("button.btn-block")).click();
-
-        WebElement listItem = driver.findElement(By.cssSelector("ul.list-of-sins > li:last-child"));
-        //overim ze sa pridal novy zaznam do zoznamu
-        Assert.assertTrue(listItem.getText().contains(title));
-        //overenie linku
-        Assert.assertTrue(listItem.findElement(By.cssSelector("div.description a")).isDisplayed());
-        Assert.assertEquals("detail", listItem.findElement(By.cssSelector("div.description a")).getText());
-
-        Assert.assertEquals(
-                Integer.valueOf(numberOfNotes + 1),
-                Integer.valueOf(driver.findElement(By.cssSelector("h3.sin-header span")).getText())
-        );
-        listItem.click();
+        notePage.enterNoteData(title, author, message);
+        notePage.submitNewNote();
+        notePage.checkNoteInList(title);
+        notePage.getLastNoteFromList().click();
         //overim detail zaznamu
-        Thread.sleep(5000);
-        WebElement detail = driver.findElement(By.cssSelector("div.content"));
-        Assert.assertEquals(title, detail.findElement(By.cssSelector("h4.title")).getText());
-        Assert.assertEquals(author, detail.findElement(By.cssSelector("h4.recipent")).getText());
-        Assert.assertEquals(message, detail.findElement(By.cssSelector("p")).getText());
+        Thread.sleep(1000);
+        notePage.checkNoteDetail(title, author, message);
     }
 
     private String generateUniqueTitle() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         return "Title " + timestamp.getTime();
     }
-
 }
-
