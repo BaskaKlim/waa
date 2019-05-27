@@ -40,12 +40,13 @@ public class NotePage {
     public WebElement getLastNoteFromList() {
         return pageDriver.findElement(By.cssSelector("ul.list-of-sins > li:last-child"));
     }
-    public void checkNoteDetail(String title, String author, String message) {
+    public void checkNoteDetail(Note noteToCheck) {
         WebElement detail = pageDriver.findElement(By.cssSelector("div.content"));
-        Assert.assertEquals(title, detail.findElement(By.cssSelector("h4.title")).getText());
-        Assert.assertEquals(author, detail.findElement(By.cssSelector("h4.recipent")).getText());
-        Assert.assertEquals(message, detail.findElement(By.cssSelector("p")).getText());
+        Assert.assertEquals(noteToCheck.getTitle(), detail.findElement(By.cssSelector("h4.title")).getText());
+        Assert.assertEquals(noteToCheck.getAuthor(), detail.findElement(By.cssSelector("h4.recipent")).getText());
+        Assert.assertEquals(noteToCheck.getMessage(), detail.findElement(By.cssSelector("p")).getText());
     }
+
     public void checkNoteInList(String title) {
         WebElement listItem = getLastNoteFromList();
         //overim ze sa pridal novy zaznam do zoznamu
