@@ -6,8 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.ConchitaPage;
 
 public class ConchitaTest extends TestBase {
+    ConchitaPage conchitaPage;
+
 
     @Before
     public void openUp () {
@@ -27,7 +30,8 @@ public class ConchitaTest extends TestBase {
     public void ItShouldBeMan() {
 
         // najdi element muz a klikni
-        driver.findElement(By.xpath("//input[@value='wurst']")).click();
+        conchitaPage = new ConchitaPage(driver);
+        conchitaPage.selectWurst();
         // najdi element hlasky a over ze sa zobrazi It￿'s wurst- teda ze ocakavana hlaska, true
        // prvy sposob: Assert.assertTrue( "It's wurst", true);
 
