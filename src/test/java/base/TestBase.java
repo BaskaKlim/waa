@@ -7,8 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestBase {
 
-    protected WebDriver driver;
-    protected final String BASE_URL = "http://localhost:8888";
+   protected WebDriver driver;
+   protected final   String BASE_URL = "http://localhost:8888";
 
     @Before
     public void setUp() {
@@ -22,5 +22,3 @@ public class TestBase {
         driver.quit();
     }
 }
-
-//vytvorila som si test base pre vsetky packege
