@@ -1,4 +1,6 @@
-pimport org.openqa.selenium.By;
+package pages;
+
+import models.Note;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,10 +28,10 @@ public class NotePage {
         this.pageDriver = driver;
         PageFactory.initElements(pageDriver, this);
     }
-    public void enterNoteData(String title, String person, String message) {
-        titleInput.sendKeys(title);
-        authorInput.sendKeys(person);
-        messageInput.sendKeys(message);
+    public void enterNoteData(Note note) {
+        titleInput.sendKeys(note.getTitle());
+        authorInput.sendKeys(note.getAuthor());
+        messageInput.sendKeys(note.getMessage());
     }
     public void submitNewNote() {
         submitButton.click();
@@ -52,6 +54,4 @@ public class NotePage {
         Assert.assertTrue(listItem.findElement(By.cssSelector("div.description a")).isDisplayed());
         Assert.assertEquals("detail", listItem.findElement(By.cssSelector("div.description a")).getText());
     }
-}
-
 }

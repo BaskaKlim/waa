@@ -3,12 +3,9 @@ package pages.preskusavamSa;
 import base.TestBase;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.person.Person;
-import org.junit.Assert;
+import models.Note;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pages.NotePage;
 
 import java.sql.Timestamp;
@@ -30,13 +27,16 @@ public class NoteTest extends TestBase {
         Person fakePerson = fairy.person();
         //ulozim si hodnoty do premennych
         String title = generateUniqueTitle();
-        String author = fakePerson.getFirstName() + " " + fakePerson.getLastName();
+        String author = "Anton";
         String message = "toto je velmi dlhy a zmysluplny odkaz";
 
-        notePage.enterNoteData(title, author, message);
-        notePage.submitNewNote();
-        notePage.checkNoteInList(title);
-        notePage.getLastNoteFromList().click();
+       Note noteToAdd = new Note (title,author,message);
+       notePage.enterNoteData (noteToAdd);
+       notePage.submitNewNote();
+       notePage.checkNoteInList(title);
+       notePage.getLastNoteFromList().click();
+
+
         //overim detail zaznamu
         Thread.sleep(1000);
         notePage.checkNoteDetail(title, author, message);
