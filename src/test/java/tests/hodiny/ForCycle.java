@@ -1,23 +1,26 @@
-package tests;
+package tests.hodiny;
 
+import base.TestBase;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class ForCycle {
+public class ForCycle extends TestBase {
+
+    @Before
+    public void openPage() {
+        driver.get(BASE_URL + "/gosslingator.php");
+    }
+
 
     @Test
 
     public void itShouldAddOneRyan() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
 
-        // 0. spustit prehliadac
-        WebDriver driver = new ChromeDriver();
-        // 1. otvorit stranku
-        driver.get("http://localhost:8888/gosslingator.php");
         // 2. n￿ájdi, potom kliknut na tlacidlo Ryon!
         driver.findElement(By.id("addRyan")).click();
 
@@ -33,12 +36,7 @@ public class ForCycle {
 
 
     public void itShouldAddTwoRyan_inySposobHladaniaElementov() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
 
-        // 0. spustit prehliadac
-        WebDriver driver = new ChromeDriver();
-        // 1. otvorit stranku
-        driver.get("http://localhost:8888/gosslingator.php");
         // 2. n￿ájdi, potom kliknut na tlacidlo Ryon!
         WebElement addRyanButton = driver.findElement(By.id("addRyan"));
         addRyanButton.click();
@@ -60,12 +58,7 @@ public class ForCycle {
     @Test
 
     public void itShouldDisplayTitle() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
 
-        // 0. spustit prehliadac
-        WebDriver driver = new ChromeDriver();
-        // 1. otvorit stranku
-        driver.get("http://localhost:8888/gosslingator.php");
         System.out.println(driver.findElement(By.cssSelector(".ryan-title")).getText());
         Assert.assertEquals("GOSLINGATE ME", driver.findElement(By.cssSelector(".ryan-title")).getText());
         // 2. n￿ájdi,
@@ -80,12 +73,7 @@ public class ForCycle {
 
     @Test
     public void forCycle() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
 
-        // 0. spustit prehliadac
-        WebDriver driver = new ChromeDriver();
-        // 1. otvorit stranku
-        driver.get("http://localhost:8888/gosslingator.php");
         // 2. n￿ájdi, potom kliknut na tlacidlo Ryon! 50krat - toto raz bude forcyklus
         WebElement addRyanButton = driver.findElement(By.id("addRyan"));
         for (int i = 0; i < 50; i++) {
@@ -125,12 +113,6 @@ public class ForCycle {
 
     @Test
     public void whileCycle() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
-
-        // 0. spustit prehliadac
-        WebDriver driver = new ChromeDriver();
-        // 1. otvorit stranku
-        driver.get("http://localhost:8888/gosslingator.php");
 
         WebElement adddRyanButton = driver.findElement(By.id("addRyan"));
         String actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();

@@ -1,4 +1,4 @@
-package tests;
+package tests.hodiny;
 
 import org.junit.Test;
 import org.openqa.selenium.By;

@@ -1,13 +1,19 @@
-package tests;
+package tests.hodiny;
 
+import base.TestBase;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Homework {
+public class Homework extends TestBase {
 
+    @Before
+    public void openPage() {
+        driver.get(BASE_URL + "/kalkulacka.php");
+    }
     @Test
 
     public void itShouldOppenKalkulacka () {
