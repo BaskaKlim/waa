@@ -23,6 +23,23 @@ public class GosslingatorTest {
         driver.quit();
     }
 
+
+    @Test
+    public void itShoudlAddTwoRyans() {
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
+        //0.spustit prehliadac
+        WebDriver driver = new ChromeDriver();
+        //1.otvorit stranku
+        driver.get("http://localhost:8888/gosslingator.php");
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        Assert.assertEquals("2", driver.findElement(By.id("ryanCounter")).getText());
+        driver.close();
+        //ukoncit session
+        driver.quit();
+    }
+
+
 }
 
 
