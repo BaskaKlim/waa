@@ -41,6 +41,17 @@ public class RegistrationTest {
         driver.findElement(By.cssSelector("button.btn-success")).click();
         Assert.assertTrue(driver.findElement(By.cssSelector ("div.alert.alert-success")).isDisplayed());
     }
+    @Test
+    //Uspesna registracia
+    public void itShouldRegisterInvalidUser() {
+
+
+        //kliknut na checkbox som robot
+        driver.findElement(By.name("robot")).click();
+        //kliknut na tlacidlo registrovat sa
+        driver.findElement(By.cssSelector("button.btn-success")).click();
+        Assert.assertTrue(driver.findElement(By.cssSelector ("div.alert-danger")).isDisplayed());
+    }
 
 
     @After
