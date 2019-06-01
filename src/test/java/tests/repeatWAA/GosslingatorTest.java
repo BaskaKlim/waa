@@ -118,6 +118,14 @@ public class GosslingatorTest {
 
 
     }
+
+    @Test
+    public void itShouldDisplayTitle() {
+        driver.findElement(By.cssSelector("h1.ryan-title"));
+        Assert.assertEquals("GOSLINGATE ME", driver.findElement(By.cssSelector("h1.ryan-title")).getText());
+        System.out.println("Title is:"+ driver.findElement(By.cssSelector("h1.ryan-title")).getText());
+
+    }
     @After
     public void tearDown() {
         //ukoncit session
