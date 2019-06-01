@@ -53,7 +53,71 @@ public class GosslingatorTest {
         System.out.println("Number of ryans: " + driver.findElement(By.id("ryanCounter")).getText());
 
     }
+    // overim, ci mi vyhodi hlasku ak dam too many ryans
 
+    @Test
+    public void itShouldDisplayWarningMessage(){
+     // najdem element button pridat Ryana a kliknem
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+        driver.findElement(By.id("addRyan")).click();
+
+
+        Assert.assertEquals("NUMBER OF\n" +
+                "RYANS\n" +
+                "IS TOO DAMN\n" +
+                "HIGH",
+                driver.findElement(By.cssSelector("h1.tooManyRyans.ryan-title")).getText());
+
+
+    }
     @After
     public void tearDown() {
         //ukoncit session
