@@ -15,7 +15,6 @@ public class XpathTrainingTest {
 
 
     @Before
-
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "chromedriver");
         driver = new ChromeDriver();
@@ -29,6 +28,27 @@ public class XpathTrainingTest {
         driver.findElement(By.xpath("//button[contains(.,'Second button')]")).click();
         //2. over hlasku, ktora sa zobrazi v you clicked:
         Assert.assertEquals("you clicked second button", driver.findElement(By.xpath("//h2/span")).getText());
+    }
+
+
+    @Test
+    public void itShouldDisplayActionByDefineVariables(){
+        // zadefinovnie si premennych
+
+        String buttonText = "One more button";
+        //1. najdi a klikni na element second button - sposob ked mam zadefinovanu premennu buttonText
+        driver.findElement(By.xpath("//button[contains(text(),'" + buttonText + "')]")).click();
+        // zadefinovnie si premennych
+        String actualMessage = driver.findElement(By.cssSelector("div.output h2 span")).getText();
+        // porovnaj
+
+        Assert.assertEquals(
+                "you clicked " + buttonText.toLowerCase(),
+                actualMessage
+        );
+
+
+
     }
 
     @After
