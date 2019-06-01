@@ -39,18 +39,27 @@ public class XpathTrainingTest {
         //1. najdi a klikni na element second button - sposob ked mam zadefinovanu premennu buttonText
         driver.findElement(By.xpath("//button[contains(text(),'" + buttonText + "')]")).click();
         // zadefinovnie si premennych
-        String actualMessage = driver.findElement(By.cssSelector("div.output h2 span")).getText();
+        String actualMessage = driver.findElement(By.xpath("//h2/span")).getText();
         // porovnaj
 
         Assert.assertEquals(
                 "you clicked " + buttonText.toLowerCase(),
                 actualMessage
         );
-
-
-
     }
 
+    @Test
+
+    public void itShouldDisplayEnteredMessage() {
+        //1. zadefinovanie si premennej - entered message
+        String enteredMessage ="vonku prsi";
+        // 2. najdi element textoveho pola         // 3. vpis don premennu
+        driver.findElement(By.cssSelector("input.form-control")).sendKeys(enteredMessage);
+        //3. click hit mebutton
+        driver.findElement(By.id("hitme")).click();
+        //4. over pozadovanu hlasku so skutocnou
+        Assert.assertEquals(driver.findElement(By.xpath("//h2/span")).getText(), "you entered " + enteredMessage);
+    }
     @After
     public void tearDown() {
         //ukoncit session
