@@ -29,7 +29,7 @@ public class GosslingatorTest {
         //pridanie premennej buttonu (najdem element button pridat Ryana a kliknem)
         // klikknem na button
         addRyanBtn.click();
-        actualNumberOfRyan= driver.findElement(By.id("ryanCounter")).getText();
+        actualNumberOfRyan = driver.findElement(By.id("ryanCounter")).getText();
         // porovnam ci mi prida cislo na vysledku ake ocakavam, musim to dat do textu, porovnavam stringy
         Assert.assertEquals("1", actualNumberOfRyan);
     }
@@ -61,31 +61,39 @@ public class GosslingatorTest {
         Assert.assertEquals("2", driver.findElement(By.id("ryanCounter")).getText());
         Assert.assertEquals("ryans", driver.findElement(By.cssSelector("div.ryan-counter h3")).getText());
         System.out.println("Number of ryans: " + driver.findElement(By.id("ryanCounter")).getText());
-
     }
-    // overim, ci mi vyhodi hlasku ak dam too many ryans
 
     @Test
     public void itShouldDisplayWarningMessage() {
-        // najdem element button pridat Ryana a kliknem
+        // nadefinujem si premenne
         WebElement addRyanBtn = driver.findElement(By.id("addRyan"));
-        for (int i =0; i<50; i++) {
-            addRyanBtn.click();
 
+        for (int i = 0; i < 50; i++) {
+            addRyanBtn.click();
             String actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();
             //porovnam skutocnu hodnotu zo stranky s hodnotou indexu +1
             //index si musim premenit na String aby som ich mohol porovnat
             Assert.assertEquals(String.valueOf(i + 1), actualNumberOfRyans);
-            System.out.println("hodnota indexu je: " + i);
+
+            //overit sklonovanie pomocou podmienky
+            String actualDescription = driver.findElement(By.cssSelector("div.ryan-counter h3")).getText();
+            if (i + 1 == 1) {
+                Assert.assertEquals("ryan", actualDescription);
+            }
+
+            if (i + 1 >= 2) {
+                Assert.assertEquals("ryans", actualDescription);
+            }
+            System.out.println("index i = " + i);
             System.out.println("pocet ryanov = " + actualNumberOfRyans);
         }
+        // overim, ci mi vyhodi hlasku ak dam too many ryans
 
         Assert.assertEquals("NUMBER OF\n" +
                         "RYANS\n" +
                         "IS TOO DAMN\n" +
                         "HIGH",
                 driver.findElement(By.cssSelector("h1.tooManyRyans.ryan-title")).getText());
-
 
 
     }
