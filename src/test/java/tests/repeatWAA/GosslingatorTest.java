@@ -69,58 +69,9 @@ public class GosslingatorTest {
     public void itShouldDisplayWarningMessage() {
         // najdem element button pridat Ryana a kliknem
         WebElement addRyanBtn = driver.findElement(By.id("addRyan"));
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-        addRyanBtn.click();
-
+        for (int i =0; i<50; i++) {
+            addRyanBtn.click();
+        }
 
 
         Assert.assertEquals("NUMBER OF\n" +
