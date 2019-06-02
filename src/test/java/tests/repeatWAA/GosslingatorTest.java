@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GosslingatorTest {
+    String actuaNumberOfRyan;
     private WebDriver driver;
     private String BASE_URL = "http://localhost:8888";
 
@@ -26,11 +27,11 @@ public class GosslingatorTest {
     public void itShoudlAddOneRyan() {
         WebElement addRyanBtn = driver.findElement(By.id("addRyan"));
         //pridanie premennej buttonu (najdem element button pridat Ryana a kliknem)
-
         // klikknem na button
         addRyanBtn.click();
+        actuaNumberOfRyan= driver.findElement(By.id("ryanCounter")).getText();
         // porovnam ci mi prida cislo na vysledku ake ocakavam, musim to dat do textu, porovnavam stringy
-        Assert.assertEquals("1", driver.findElement(By.id("ryanCounter")).getText());
+        Assert.assertEquals("1", actuaNumberOfRyan);
     }
 
     // prida mi 2 ryanov
@@ -40,7 +41,8 @@ public class GosslingatorTest {
 
         addRyanBtn.click();
         addRyanBtn.click();
-        Assert.assertEquals("2", driver.findElement(By.id("ryanCounter")).getText());
+        actuaNumberOfRyan= driver.findElement(By.id("ryanCounter")).getText();
+        Assert.assertEquals("2", actuaNumberOfRyan);
 
     }
 
