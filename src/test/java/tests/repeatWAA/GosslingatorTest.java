@@ -122,12 +122,22 @@ public class GosslingatorTest {
 
     }
 
+    @Test
+    //otestujte, ze po otvoreni stranky gosslingator, nie je zobrazeny ani jeden ryan
+    public void itShouldBeDisplayedNoRyan() {
+        // nadefinujem si premenne
+        int numberOfRyanImages = driver.findElements(By.cssSelector("img")).size();
+        Assert.assertEquals(numberOfRyanImages, 0);
+    }
+
     @After
     public void tearDown() {
         //ukoncit session
         driver.quit();
     }
 }
+
+
 
 
 
