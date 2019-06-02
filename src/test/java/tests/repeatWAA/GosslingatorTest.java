@@ -83,10 +83,18 @@ public class GosslingatorTest {
             if (i + 1 >= 2) {
                 Assert.assertEquals("ryans", actualDescription);
             }
+
+            //otestujte v cykle pocet zobrazenych obrazkov ryana
+            int numberOfRyanImages = driver.findElements(By.cssSelector("img")).size();
+
+            Assert.assertEquals(i + 1, numberOfRyanImages);
+
             // vypysat index a pocet ryanov
             System.out.println("hodnota indexu je " + i);
             System.out.println("pocet ryanov je: " + actualNumberOfRyans);
         }
+
+
 
         // overim, ci mi vyhodi hlasku ak dam too many ryans
 
