@@ -1,5 +1,6 @@
 package tests.repeatWAA;
 
+import javassist.bytecode.SyntheticAttribute;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,7 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GosslingatorTest {
-    String actualNumberOfRyan;
+    String actualNumberOfRyans;
     private WebDriver driver;
     private String BASE_URL = "http://localhost:8888";
 
@@ -29,9 +30,9 @@ public class GosslingatorTest {
         //pridanie premennej buttonu (najdem element button pridat Ryana a kliknem)
         // klikknem na button
         addRyanBtn.click();
-        actualNumberOfRyan = driver.findElement(By.id("ryanCounter")).getText();
+        actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();
         // porovnam ci mi prida cislo na vysledku ake ocakavam, musim to dat do textu, porovnavam stringy
-        Assert.assertEquals("1", actualNumberOfRyan);
+        Assert.assertEquals("1", actualNumberOfRyans);
     }
 
     // prida mi 2 ryanov
@@ -41,8 +42,8 @@ public class GosslingatorTest {
 
         addRyanBtn.click();
         addRyanBtn.click();
-        actualNumberOfRyan = driver.findElement(By.id("ryanCounter")).getText();
-        Assert.assertEquals("2", actualNumberOfRyan);
+        actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();
+        Assert.assertEquals("2", actualNumberOfRyans);
 
     }
 
@@ -74,19 +75,19 @@ public class GosslingatorTest {
             //porovnam skutocnu hodnotu zo stranky s hodnotou indexu +1
             //index si musim premenit na String aby som ich mohol porovnat
             Assert.assertEquals(String.valueOf(i + 1), actualNumberOfRyans);
-
-            //overit sklonovanie pomocou podmienky
+            // podmienky if
             String actualDescription = driver.findElement(By.cssSelector("div.ryan-counter h3")).getText();
             if (i + 1 == 1) {
                 Assert.assertEquals("ryan", actualDescription);
             }
-
             if (i + 1 >= 2) {
                 Assert.assertEquals("ryans", actualDescription);
             }
-            System.out.println("index i = " + i);
-            System.out.println("pocet ryanov = " + actualNumberOfRyans);
+            // vypysat index a pocet ryanov
+            System.out.println("hodnota indexu je " + i);
+            System.out.println("pocet ryanov je: " + actualNumberOfRyans);
         }
+
         // overim, ci mi vyhodi hlasku ak dam too many ryans
 
         Assert.assertEquals("NUMBER OF\n" +
@@ -97,6 +98,21 @@ public class GosslingatorTest {
 
 
     }
+
+    @Test
+    public void itShouldDisplayWarningMessageUsingWhileCycle() {
+        WebElement addRyanButton = driver.findElement(By.id("addRyan"));
+        String actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();
+        //while cyklus sa vykona vzdy ak je podmienka "true"
+        int clicksLimit = 30;
+        int clicks = 0;
+        while (!actualNumberOfRyans.equals("50") && clicks < clicksLimit) {
+            addRyanButton.click();
+            actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();
+            clicks++;
+        }
+    }
+
 
     @Test
     public void itShouldDisplayTitle() {
