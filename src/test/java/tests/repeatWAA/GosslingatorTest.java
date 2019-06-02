@@ -76,12 +76,16 @@ public class GosslingatorTest {
             //porovnam skutocnu hodnotu zo stranky s hodnotou indexu +1
             //index si musim premenit na String aby som ich mohol porovnat
             Assert.assertEquals(String.valueOf(i + 1), actualNumberOfRyans);
+            System.out.println("hodnota indexu je: " + i);
+            System.out.println("pocet ryanov = " + actualNumberOfRyans);
         }
+
         Assert.assertEquals("NUMBER OF\n" +
                         "RYANS\n" +
                         "IS TOO DAMN\n" +
                         "HIGH",
                 driver.findElement(By.cssSelector("h1.tooManyRyans.ryan-title")).getText());
+
 
 
     }
