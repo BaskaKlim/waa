@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GosslingatorTest {
-    String actuaNumberOfRyan;
+    String actualNumberOfRyan;
     private WebDriver driver;
     private String BASE_URL = "http://localhost:8888";
 
@@ -29,9 +29,9 @@ public class GosslingatorTest {
         //pridanie premennej buttonu (najdem element button pridat Ryana a kliknem)
         // klikknem na button
         addRyanBtn.click();
-        actuaNumberOfRyan= driver.findElement(By.id("ryanCounter")).getText();
+        actualNumberOfRyan= driver.findElement(By.id("ryanCounter")).getText();
         // porovnam ci mi prida cislo na vysledku ake ocakavam, musim to dat do textu, porovnavam stringy
-        Assert.assertEquals("1", actuaNumberOfRyan);
+        Assert.assertEquals("1", actualNumberOfRyan);
     }
 
     // prida mi 2 ryanov
@@ -41,8 +41,8 @@ public class GosslingatorTest {
 
         addRyanBtn.click();
         addRyanBtn.click();
-        actuaNumberOfRyan= driver.findElement(By.id("ryanCounter")).getText();
-        Assert.assertEquals("2", actuaNumberOfRyan);
+        actualNumberOfRyan = driver.findElement(By.id("ryanCounter")).getText();
+        Assert.assertEquals("2", actualNumberOfRyan);
 
     }
 
@@ -71,9 +71,12 @@ public class GosslingatorTest {
         WebElement addRyanBtn = driver.findElement(By.id("addRyan"));
         for (int i =0; i<50; i++) {
             addRyanBtn.click();
+
+            String actualNumberOfRyans = driver.findElement(By.id("ryanCounter")).getText();
+            //porovnam skutocnu hodnotu zo stranky s hodnotou indexu +1
+            //index si musim premenit na String aby som ich mohol porovnat
+            Assert.assertEquals(String.valueOf(i + 1), actualNumberOfRyans);
         }
-
-
         Assert.assertEquals("NUMBER OF\n" +
                         "RYANS\n" +
                         "IS TOO DAMN\n" +
