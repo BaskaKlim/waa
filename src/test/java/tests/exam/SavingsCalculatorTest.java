@@ -6,13 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.SavingsCalculatorPage;
 
 public class SavingsCalculatorTest extends TestBase {
-
+    private SavingsCalculatorPage savingPage;
 
     @Before
     public void openPage() {
         driver.get(BASE_URL + "/savingscalculator.php");
+        savingPage = new SavingsCalculatorPage (driver);
     }
 
     @Test
@@ -20,21 +22,21 @@ public class SavingsCalculatorTest extends TestBase {
         //najdi a vypln polia
         // zacinam emailom bo je lahky
         String email = "baska@mail.com";
-        emailInput().sendKeys(email);
+        savingPage.emailInput().sendKeys(email);
         //najdem si pole s fundoami a kliknem a selektor dropdown si zadefingujem
-        fundSelect().click();
-        WebElement dropdown = fundSelect();
+        savingPage.fundSelect().click();
+        WebElement dropdown = savingPage.fundSelect();
         //z tohto dropdownu vytiahnem moznost, ktora obsahuje ten prvy fund a kliknem
         dropdown.findElement(By.xpath("//option[. = 'Handelsbanken Aktiv 100']")).click();
         // najdem si dalsie pole a vpisem don jednu z moznosti ktoru som si sipkami nasla (asi hranicna hodnota) a kliknem
-        OneTimeInvestment().sendKeys("1000");
-        OneTimeInvestment().click();
+        savingPage.OneTimeInvestment().sendKeys("1000");
+        savingPage.OneTimeInvestment().click();
         //najdem si pole (element) rokov a opat vpisem hodnotu co som si nasla ze berie a kliknem
-        yearsImput().sendKeys("1");
-        yearsImput().click();
+        savingPage.yearsImput().sendKeys("1");
+        savingPage.yearsImput().click();
         //overim ci sa da na tlacidlo kliknit - ak sa da na tlacidlo kliknut tak je enable driver.findElement(By.cssSelector(".btn")).click();
         // ale overit sa to da aj cez isEnabled
-        Assert.assertTrue(buttonApply().isEnabled());
+        Assert.assertTrue(savingPage.buttonApply().isEnabled());
 
     }
 
@@ -42,19 +44,19 @@ public class SavingsCalculatorTest extends TestBase {
     public void itShouldContainIncomes() {
         //najdi a vypln polia
         //najdem si pole s fundoami a kliknem a selektor dropdown si zadefingujem
-        fundSelect().click();
-        WebElement dropdown = fundSelect();
+        savingPage.fundSelect().click();
+        WebElement dropdown = savingPage.fundSelect();
         //z tohto dropdownu vytiahnem moznost, ktora obsahuje ten prvy fund a kliknem
         dropdown.findElement(By.xpath("//option[. = 'Handelsbanken Aktiv 100']")).click();
         // najdem si dalsie pole a vpisem don jednu z moznosti ktoru som si sipkami nasla (asi hranicna hodnota) a kliknem
-        OneTimeInvestment().sendKeys("1000");
-        OneTimeInvestment().click();
+        savingPage.OneTimeInvestment().sendKeys("1000");
+        savingPage.OneTimeInvestment().click();
         //najdem si pole (element) rokov a opat vpisem hodnotu co som si nasla ze berie a kliknem
-        yearsImput().sendKeys("1");
-        yearsImput().click();
+        savingPage.yearsImput().sendKeys("1");
+        savingPage.yearsImput().click();
         // zacinam emailom bo je lahky
         String email = "baska@mail.com";
-        emailInput().sendKeys(email);
+        savingPage.emailInput().sendKeys(email);
 
         WebElement container = driver.findElement(By.cssSelector("div.result"));
         System.out.println(container.findElement(By.xpath("./div[1]/p")).getText());
@@ -66,19 +68,19 @@ public class SavingsCalculatorTest extends TestBase {
     public void itShouldContainRisk() {
         //najdi a vypln polia
         //najdem si pole s fundoami a kliknem a selektor dropdown si zadefingujem
-        fundSelect().click();
-        WebElement dropdown = fundSelect();
+        savingPage.fundSelect().click();
+        WebElement dropdown = savingPage.fundSelect();
         //z tohto dropdownu vytiahnem moznost, ktora obsahuje ten prvy fund a kliknem
         dropdown.findElement(By.xpath("//option[. = 'Handelsbanken Aktiv 100']")).click();
         // najdem si dalsie pole a vpisem don jednu z moznosti ktoru som si sipkami nasla (asi hranicna hodnota) a kliknem
-        OneTimeInvestment().sendKeys("1000");
-        OneTimeInvestment().click();
+        savingPage.OneTimeInvestment().sendKeys("1000");
+        savingPage.OneTimeInvestment().click();
         //najdem si pole (element) rokov a opat vpisem hodnotu co som si nasla ze berie a kliknem
-        yearsImput().sendKeys("1");
-        yearsImput().click();
+        savingPage.yearsImput().sendKeys("1");
+        savingPage.yearsImput().click();
         // zacinam emailom bo je lahky
         String email = "baska@mail.com";
-        emailInput() .sendKeys(email);
+        savingPage.emailInput() .sendKeys(email);
 
         WebElement container = driver.findElement(By.cssSelector("div.result"));
         System.out.println(container.findElement(By.xpath("./div[3]/p")).getText());
@@ -91,49 +93,25 @@ public class SavingsCalculatorTest extends TestBase {
     public void itShouldAddNewNote() {
         //najdi a vypln polia
         //najdem si pole s fundoami a kliknem a selektor dropdown si zadefingujem
-        fundSelect().click();
-        WebElement dropdown = fundSelect();
+        savingPage.fundSelect().click();
+        WebElement dropdown = savingPage.fundSelect();
         //z tohto dropdownu vytiahnem moznost, ktora obsahuje ten prvy fund a kliknem
         dropdown.findElement(By.xpath("//option[. = 'Handelsbanken Aktiv 100']")).click();
         // najdem si dalsie pole a vpisem don jednu z moznosti ktoru som si sipkami nasla (asi hranicna hodnota) a kliknem
-        OneTimeInvestment().sendKeys("1000");
-        OneTimeInvestment().click();
+        savingPage.OneTimeInvestment().sendKeys("1000");
+        savingPage.OneTimeInvestment().click();
         //najdem si pole (element) rokov a opat vpisem hodnotu co som si nasla ze berie a kliknem
-        yearsImput().sendKeys("1");
-        yearsImput().click();
+        savingPage.yearsImput().sendKeys("1");
+        savingPage.yearsImput().click();
         // zacinam emailom bo je lahky
         String email = "baska@mail.com";
-        emailInput().sendKeys(email);
+        savingPage.emailInput().sendKeys(email);
         // kliknem
-        buttonApply().click();
+        savingPage.buttonApply().click();
 
-        Assert.assertTrue(lastNote().isDisplayed());
-        Assert.assertTrue(lastNote().getText().contains("Handelsbanken"));
-
-
-    }
-
-    public WebElement lastNote() {
-        return driver.findElement(By.xpath("//ul/li[1]/div"));
-    }
+        Assert.assertTrue(savingPage.lastNote().isDisplayed());
+        Assert.assertTrue(savingPage.lastNote().getText().contains("Handelsbanken"));
 
 
-    public WebElement buttonApply() {
-        return driver.findElement(By.cssSelector("button.btn-success"));
-    }
-
-    public WebElement fundSelect(){
-        return driver.findElement(By.id("fundSelect"));
-    }
-
-    public WebElement emailInput() {
-       return driver.findElement(By.id("emailInput"));
-    }
-
-    public WebElement yearsImput() {
-        return driver.findElement(By.id("yearsInput"));
-    }
-    public WebElement OneTimeInvestment() {
-        return driver.findElement(By.id("oneTimeInvestmentInput"));
     }
 }
