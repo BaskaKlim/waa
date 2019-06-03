@@ -71,19 +71,33 @@ public class FellowshipTest {
 
     @Test
     public void myFavouriteTeamisComplete() {
-        // utvorim si list elementov
+        // utvorim si list, je to list tringov
+
         List<String> myFavouriteTeam = new ArrayList<String>();
-        myFavouriteTeam.add("Aragorn");
+        // priradim si k elementom hodnoty
+        myFavouriteTeam.add("Gandalf");
         myFavouriteTeam.add("Frodo");
         myFavouriteTeam.add("Legolas");
-        myFavouriteTeam.add("Gandalf");
+        myFavouriteTeam.add("Aragorn");
+
+        //pridam podmienku ze pre kazdy z elemnt z mojho listu vykonaj
 
         for (String fellow : myFavouriteTeam) {
-            driver.findElement(By.xpath("//h1[contains(text(),'" + fellow + "')]")).click();
+            // klikni na kazdy element obsahujuci H1 nadpisy a obsahujuci text z mojho listu
+            driver.findElement(By.xpath("//div/h1[contains(text(),'" + fellow + "')]")).click();
         }
-        Assert.assertEquals("Complete", driver.findElement(By.ByXPath.cssSelector("div h3")).getText());
-
+        Assert.assertEquals("Complete", driver.findElement(By.cssSelector("div h3")).getText());
     }
+
+    @Test
+    public void inicialnyPocetJe25() {
+        // utvorim si list, je to list tringov
+
+            String inicialnyPocet = driver.findElement(By.cssSelector("div.points-left h2")).getText();
+            Assert.assertTrue(inicialnyPocet.contains("25"));
+        }
+
+
 
 
     @After
