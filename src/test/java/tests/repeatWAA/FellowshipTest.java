@@ -12,6 +12,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.openqa.selenium.By.className;
+
 public class FellowshipTest {
     private WebDriver driver;
     private String BASE_URL = "http://localhost:8888";
@@ -35,14 +37,16 @@ public class FellowshipTest {
         }
 
     }
+
     @Test
     public void itShouldContainNameForEachFellow() {
         List<WebElement> fellows = driver.findElements(By.cssSelector("UL.row.list-of-fellows li"));
         for (WebElement fellow : fellows) {
-        Assert.assertFalse(fellow.findElement(By.cssSelector("h1")).getText().isEmpty());
+            Assert.assertFalse(fellow.findElement(By.cssSelector("h1")).getText().isEmpty());
         }
 
     }
+
     @Test
     public void itShouldContainSpecifiedFellows() {
         //najdem si zoznam elementov (kachliciek)
@@ -62,7 +66,26 @@ public class FellowshipTest {
         Assert.assertTrue(fellowNames.contains("Aragorn"));
         Assert.assertTrue(fellowNames.contains("Frodo"));
     }
-}
+
+    //si vyberte oblubeny tim a vyklikajte ho - overte ze v casti kde su body sa zobrazi napis `Complete`
+
+    @Test
+    public void myFavouriteTeamisComplete() {
+        // utvorim si list elementov
+        List<String> myFavouriteTeam = new ArrayList<String>();
+        myFavouriteTeam.add("Aragorn");
+        myFavouriteTeam.add("Frodo");
+        myFavouriteTeam.add("Legolas");
+        myFavouriteTeam.add("Gandalf");
+
+        for (String fellow : myFavouriteTeam) {
+            driver.findElement(By.xpath("//h1[contains(text(),'" + fellow + "')]")).click();
+        }
+        Assert.assertEquals("Complete", driver.findElement(By.ByXPath.cssSelector("div h3")).getText());
+
+    }
+
+
     @After
     public void tearDown() {
         //ukoncit session
