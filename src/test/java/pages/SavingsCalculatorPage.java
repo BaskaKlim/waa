@@ -3,37 +3,61 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SavingsCalculatorPage {
+
+    @FindBy(xpath="//ul/li[1]/div")
+    private WebElement lastNoteElement;
+
+
+    @FindBy(css ="button.btn-success")
+    private WebElement buttonElement;
+
+    @FindBy(id= "fundSelect")
+    private WebElement fundSelectElement;
+
+    @FindBy(id ="emailInput")
+    private WebElement emailInputElement;
+
+    @FindBy(id = "yearsInput")
+    private WebElement yearsInputElement;
+
+
+    @FindBy (id= "oneTimeInvestmentInput")
+    private WebElement oneTimeInvestment;
+
 
     WebDriver driver;
 
     public SavingsCalculatorPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
 
     public WebElement lastNote() {
-        return driver.findElement(By.xpath("//ul/li[1]/div"));
+        return  lastNoteElement;
     }
 
 
     public WebElement buttonApply() {
-        return driver.findElement(By.cssSelector("button.btn-success"));
+        return buttonElement;
     }
 
     public WebElement fundSelect(){
-        return driver.findElement(By.id("fundSelect"));
+        return fundSelectElement;
     }
 
     public WebElement emailInput() {
-        return driver.findElement(By.id("emailInput"));
+        return emailInputElement;
     }
 
     public WebElement yearsImput() {
-        return driver.findElement(By.id("yearsInput"));
+        return yearsInputElement;
     }
     public WebElement OneTimeInvestment() {
-        return driver.findElement(By.id("oneTimeInvestmentInput"));
+        return oneTimeInvestment;
     }
 }
