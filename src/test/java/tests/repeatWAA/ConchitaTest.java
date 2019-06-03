@@ -1,5 +1,6 @@
 package tests.repeatWAA;
 
+import base.TestBase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,16 +9,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class ConchitaTest {
-    //otestujte po otvoreni stranky ze ani jedna moznost nie je vybrata
-
-    WebDriver driver;
-    String BASE_URL = "http://localhost:8888";
+public class ConchitaTest extends TestBase {
 
     @Before
-    public void setUp() {
-        System.setProperty("webdriver.chore.driver", "chromedriver");
-        driver = new ChromeDriver();
+    public void openPage() {
         driver.get(BASE_URL + "/zenaalebomuz.php");
     }
     //testujte po otvoreni stranky ze ani jedna moznost nie je vybrata
@@ -58,11 +53,5 @@ public class ConchitaTest {
         Assert.assertTrue(driver.findElement(By.cssSelector("img")).isDisplayed());
     }
 
-
-    @After
-    public void tearDown() {
-        driver.close();
-        driver.quit();
-    }
 }
 
