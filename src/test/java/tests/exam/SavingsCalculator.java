@@ -32,9 +32,7 @@ public class SavingsCalculator extends TestBase {
         //najdem si pole (element) rokov a opat vpisem hodnotu co som si nasla ze berie a kliknem
         driver.findElement(By.id("yearsInput")).sendKeys("1");
         driver.findElement(By.id("yearsInput")).click();
-        //overim ci sa da na tlacidlo kliknit - ak sa da na tlacidlo kliknut tak je enable
-
-        // driver.findElement(By.cssSelector(".btn")).click();
+        //overim ci sa da na tlacidlo kliknit - ak sa da na tlacidlo kliknut tak je enable driver.findElement(By.cssSelector(".btn")).click();
         // ale overit sa to da aj cez isEnabled
         Assert.assertTrue(driver.findElement(By.cssSelector("button.btn-success")).isEnabled());
 
@@ -61,6 +59,7 @@ public class SavingsCalculator extends TestBase {
         WebElement container = driver.findElement(By.cssSelector("div.result"));
         System.out.println(container.findElement(By.xpath("./div[1]/p")).getText());
         System.out.println(container.findElement(By.xpath("./div[2]/p")).getText());
+        Assert.assertFalse(container.findElement(By.xpath("./div[2]/p")).getText().isEmpty());
     }
 
     @Test
@@ -83,6 +82,46 @@ public class SavingsCalculator extends TestBase {
 
         WebElement container = driver.findElement(By.cssSelector("div.result"));
         System.out.println(container.findElement(By.xpath("./div[3]/p")).getText());
+        Assert.assertFalse(container.findElement(By.xpath("./div[3]/p")).getText().isEmpty());
+    }
+
+
+    @Test
+
+    public void itShouldAddNewNote() {
+        //najdi a vypln polia
+        //najdem si pole s fundoami a kliknem a selektor dropdown si zadefingujem
+        driver.findElement(By.id("fundSelect")).click();
+        WebElement dropdown = driver.findElement(By.id("fundSelect"));
+        //z tohto dropdownu vytiahnem moznost, ktora obsahuje ten prvy fund a kliknem
+        dropdown.findElement(By.xpath("//option[. = 'Handelsbanken Aktiv 100']")).click();
+        // najdem si dalsie pole a vpisem don jednu z moznosti ktoru som si sipkami nasla (asi hranicna hodnota) a kliknem
+        driver.findElement(By.id("oneTimeInvestmentInput")).sendKeys("1000");
+        driver.findElement(By.id("oneTimeInvestmentInput")).click();
+        //najdem si pole (element) rokov a opat vpisem hodnotu co som si nasla ze berie a kliknem
+        driver.findElement(By.id("yearsInput")).sendKeys("1");
+        driver.findElement(By.id("yearsInput")).click();
+        // zacinam emailom bo je lahky
+        String email = "baska@mail.com";
+        driver.findElement(By.id("emailInput")).sendKeys(email);
+        // kliknem
+        driver.findElement(By.cssSelector(".btn")).click();
+
+        Assert.assertTrue(lastNote().isDisplayed());
+        Assert.assertTrue(lastNote().getText().contains("Handelsbanken"));
+
+
+    }
+
+    public WebElement lastNote() {
+        return driver.findElement(By.xpath("//ul/li[1]/div"));
+    }
+
+
+
+
+    public WebElement buttonApply() {
+        return driver.findElement(By.cssSelector(".btn"));
     }
 
 }
